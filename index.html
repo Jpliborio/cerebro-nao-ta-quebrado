@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Cérebro Não Tá Quebrado — O guia sem enrolação pra adultos com TDAH</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0B0B0F;
+    --bg2: #111118;
+    --bg3: #16161F;
+    --purple: #8B5CF6;
+    --purple-light: #A78BFA;
+    --purple-glow: rgba(139,92,246,0.18);
+    --white: #F0EEF8;
+    --muted: #8B8A9E;
+    --border: rgba(139,92,246,0.2);
+    --green: #34D399;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: -180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, rgba(139,92,246,0.28) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    border: 1px solid var(--border);
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 36px;
+    background: rgba(139,92,246,0.08);
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    font-weight: 800;
+    line-height: 1.05;
+    max-width: 860px;
+    margin-bottom: 28px;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 50%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .hero-sub strong { color: var(--white); }
+
+  .hero-cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 20px 48px;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    box-shadow: 0 0 40px rgba(139,92,246,0.45), 0 4px 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(139,92,246,0.6), 0 8px 30px rgba(0,0,0,0.5);
+  }
+
+  .hero-note {
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ─── PROBLEMA ─── */
+  .section { position: relative; z-index: 1; }
+
+  .problema {
+    padding: 100px 24px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .container { max-width: 720px; margin: 0 auto; }
+  .container-wide { max-width: 1000px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--purple-light);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .problema h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  .problema p {
+    color: #C5C2D8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+  }
+
+  .problema p em {
+    font-style: italic;
+    color: var(--purple-light);
+  }
+
+  .destaque-box {
+    margin: 40px 0;
+    padding: 28px 32px;
+    border-left: 3px solid var(--purple);
+    background: var(--purple-glow);
+    border-radius: 0 8px 8px 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.5;
+  }
+
+  /* ─── SOLUÇÃO ─── */
+  .solucao {
+    padding: 100px 24px;
+  }
+
+  .solucao h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 48px 0;
+  }
+
+  .stat-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--purple-light);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .stat-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .solucao p {
+    color: #C5C2D8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+  }
+
+  .blockquote {
+    margin: 36px 0;
+    padding: 24px 28px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #B8B5CC;
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ─── BENEFÍCIOS ─── */
+  .beneficios {
+    padding: 100px 24px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .beneficios h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    margin-bottom: 48px;
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+
+  .beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .beneficio-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    transition: border-color 0.2s;
+  }
+
+  .beneficio-item:hover { border-color: var(--purple); }
+
+  .check {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(52, 211, 153, 0.15);
+    border: 1px solid rgba(52, 211, 153, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--green);
+    margin-top: 2px;
+  }
+
+  .beneficio-text strong {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+
+  .beneficio-text span {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ─── FORMATO ─── */
+  .formato-badge {
+    margin-top: 48px;
+    padding: 24px 28px;
+    background: var(--purple-glow);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #C5C2D8;
+    text-align: center;
+  }
+
+  .formato-badge strong { color: var(--purple-light); }
+
+  /* ─── CREDIBILIDADE ─── */
+  .credibilidade {
+    padding: 100px 24px;
+  }
+
+  .credibilidade h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .credibilidade p {
+    color: #C5C2D8;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+  }
+
+  .depoimento-placeholder {
+    margin-top: 40px;
+    padding: 28px;
+    border: 1px dashed rgba(139,92,246,0.3);
+    border-radius: 10px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* ─── OFERTA ─── */
+  .oferta {
+    padding: 100px 24px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .oferta h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  .preco-comparativo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .preco-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #C5C2D8;
+  }
+
+  .preco-item .valor {
+    color: var(--muted);
+    font-size: 0.9rem;
+    text-decoration: line-through;
+  }
+
+  .preco-destaque {
+    text-align: center;
+    margin: 48px 0 32px;
+  }
+
+  .preco-de {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .preco-por {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 800;
+    background: linear-gradient(135deg, #A78BFA, #7C3AED);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .preco-contexto {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  /* ─── CTA FINAL ─── */
+  .cta-final {
+    padding: 80px 24px;
+    text-align: center;
+  }
+
+  .cta-final h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .cta-final p {
+    color: var(--muted);
+    margin-bottom: 40px;
+    font-size: 1rem;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.15rem;
+    padding: 22px 56px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 0 40px rgba(139,92,246,0.45), 0 4px 20px rgba(0,0,0,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 60px rgba(139,92,246,0.6), 0 8px 30px rgba(0,0,0,0.5);
+  }
+
+  .cta-urgencia {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.5;
+  }
+
+  .cta-urgencia strong { color: var(--white); }
+
+  /* ─── GARANTIA ─── */
+  .garantia {
+    padding: 80px 24px;
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+
+  .garantia-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    max-width: 560px;
+  }
+
+  .garantia-icon {
+    font-size: 3rem;
+    margin-bottom: 8px;
+  }
+
+  .garantia h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  .garantia p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 32px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    line-height: 1.8;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .beneficios-grid { grid-template-columns: 1fr; }
+    .hero-cta, .cta-btn { padding: 18px 32px; font-size: 1rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero section">
+  <div class="hero-glow"></div>
+  <span class="eyebrow">Ebook Digital — Acesso Imediato</span>
+  <h1>Você não leu 3 livros<br>de produtividade.<br><em>Você começou 3.</em></h1>
+  <p class="hero-sub">
+    Este guia foi escrito exatamente pra quem nunca termina nada —<br>
+    <strong>e com permissão pra ler fora de ordem.</strong>
+  </p>
+  <a href="#comprar" class="hero-cta">🧠 QUERO ENTENDER MEU CÉREBRO — R$47</a>
+  <p class="hero-note">Acesso imediato · PDF · Garantia de 7 dias</p>
+</section>
+
+<!-- PROBLEMA -->
+<section class="problema section">
+  <div class="container">
+    <span class="section-label">Você se reconhece aqui?</span>
+    <h2>Deixa eu adivinhar<br>o seu dia.</h2>
+    <p>Você acordou atrasado mesmo tendo posto 4 alarmes. Saiu de casa e voluou duas vezes — a segunda pra buscar o celular que estava na sua mão. No trabalho, abriu a tarefa importante às 9h e às 11h percebeu que fez tudo, menos ela. Não por preguiça. Você <strong>queria</strong> fazer. Só… não começou.</p>
+    <p>À noite, jurou que ia dormir cedo. À 1h47 da manhã você estava assistindo vídeo sobre um assunto que não te interessava até as 23h, com a roupa de amanhã por escolher e aquela culpa conhecida no peito.</p>
+    <p>Você já se chamou de preguiçoso. Desligado. Imaturo. Bagunçado. Já prometeu — com sinceridade absoluta — que segunda-feira ia ser diferente. Já comprou planner, baixou aplicativo, colou post-it. Funcionou por 4 dias.</p>
+    <div class="destaque-box">
+      "Eu tenho tanto potencial… então por que minha vida parece sempre no limite?"
+    </div>
+    <p>Se você leu até aqui com o coração apertado, continua. Os próximos parágrafos podem reorganizar a história da sua vida inteira.</p>
+  </div>
+</section>
+
+<!-- SOLUÇÃO -->
+<section class="solucao section">
+  <div class="container">
+    <span class="section-label">A Solução</span>
+    <h2>E se o problema nunca tiver sido esforço — e sim o <em style="color:var(--purple-light);font-style:normal;">manual errado</em>?</h2>
+    <p>A ciência tem um nome pra esse padrão: <strong>TDAH em adultos</strong>. E os números mostram por que você nunca se reconheceu nele:</p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num">3%</div>
+        <div class="stat-desc">dos adultos têm TDAH — a maioria não sabe</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">&lt;20%</div>
+        <div class="stat-desc">têm diagnóstico e tratamento adequado</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">+50%</div>
+        <div class="stat-desc">dos diagnosticados descobriram sendo adultos</div>
+      </div>
+    </div>
+
+    <p><strong>Seu Cérebro Não Tá Quebrado</strong> é um ebook direto, honesto e sem enrolação sobre TDAH adulto — escrito como um amigo que também vive isso te explicaria. Sem tom de palestra. Sem 400 páginas de manual técnico. Sem "basta se organizar".</p>
+    <p>São 10 capítulos que explicam o que acontece dentro da sua cabeça (em português de gente), por que os métodos normais de produtividade falham com você, e o que funciona de verdade — no trabalho, no amor, no sono e no seu bolso.</p>
+    <div class="blockquote">
+      Construído com base na literatura científica sobre TDAH adulto — incluindo as pesquisas de Russell Barkley, uma das maiores referências mundiais — e traduzido pra vida real de quem tem 20 e poucos anos e uma vida pra tocar.
+    </div>
+  </div>
+</section>
+
+<!-- BENEFÍCIOS -->
+<section class="beneficios section">
+  <div class="container-wide">
+    <h2>O que você leva pra vida<br>depois dessa leitura:</h2>
+    <div class="beneficios-grid">
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>Finalmente entender seu cérebro</strong>
+          <span>Dopamina, funções executivas e "cegueira temporal" explicados sem juridiquês médico</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>O fim do "sou preguiçoso"</strong>
+          <span>A diferença entre falha de caráter e sintoma — e por que isso muda tudo</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>Produtividade que funciona pra VOCÊ</strong>
+          <span>Body doubling, urgência fabricada, menu de dopamina: pra cérebros movidos a interesse</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>Relacionamentos sem mal-entendido</strong>
+          <span>Scripts prontos pra explicar seu funcionamento pra quem você ama</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>A guerra das 2h da manhã, resolvida</strong>
+          <span>Protocolo de sono realista pra quem promete dormir cedo há 10 anos</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>Freio anti-impulso</strong>
+          <span>Regra das 24h e atrito estratégico pro seu cartão sobreviver</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>O mapa do diagnóstico</strong>
+          <span>Como funciona, onde buscar (plano e SUS), o que levar na consulta</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>Plano de 30 dias</strong>
+          <span>Simples de propósito — desenhado pra quem abandona tudo na semana 3</span>
+        </div>
+      </div>
+      <div class="beneficio-item">
+        <div class="check">✓</div>
+        <div class="beneficio-text">
+          <strong>6 infográficos inclusos</strong>
+          <span>Porque a gente sabe que vocç vai folhear antes de ler 😉</span>
+        </div>
+      </div>
+    </div>
+    <div class="formato-badge">
+      📖 <strong>PDF de alta qualidade · 29 páginas</strong> desenhadas pra leitura com TDAH — capítulos curtos, caixas práticas, leitura completa em ~2 horas
+    </div>
+  </div>
+</section>
+
+<!-- CREDIBILIDADE -->
+<section class="credibilidade section">
+  <div class="container">
+    <span class="section-label">Por que confiar?</span>
+    <h2>Por que confiar<br>neste material?</h2>
+    <p>Porque ele não inventa nada: cada número citado vem de pesquisa publicada sobre TDAH adulto — prevalência, subdiagnóstico, impacto no trabalho (os estudos mostram <strong>60% mais risco de demissão</strong> quando o TDAH não é manejado), sono e impulsividade.</p>
+    <p>As referências estão dentro do ebook, com indicação de onde se aprofundar (ABDA, CHADD, literatura científica).</p>
+    <p>E porque ele é honesto até no que <strong>NÃO promete</strong>: este ebook não substitui médico, não vende "cura" e não te chama de gênio incompreendido. Te entrega entendimento + ferramentas — e te empurra (com carinho) pro diagnóstico profissional.</p>
+    <div class="depoimento-placeholder">
+      ⭐ <em>Depoimentos dos primeiros compradores entram aqui nas primeiras semanas</em>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="oferta section" id="comprar">
+  <div class="container">
+    <span class="section-label">A Oferta</span>
+    <h2>Quanto custa entender<br>seu próprio cérebro?</h2>
+    <div class="preco-comparativo">
+      <div class="preco-item">
+        <span>Consulta particular com especialista pra te explicar tudo isso</span>
+        <span class="valor">R$300–600</span>
+      </div>
+      <div class="preco-item">
+        <span>Os 3 livros técnicos que você precisaria ler (e não vai)</span>
+        <span class="valor">R$150+</span>
+      </div>
+      <div class="preco-item">
+        <span>Mais um planner, app premium, curso genérico</span>
+        <span class="valor">R$100+</span>
+      </div>
+      <div class="preco-item">
+        <span>Mais um ano se chamando de preguiçoso</span>
+        <span class="valor">incalculável</span>
+      </div>
+    </div>
+    <div class="preco-destaque">
+      <div class="preco-de">Seu Cérebro Não Tá Quebrado custa</div>
+      <div class="preco-por">R$47</div>
+      <div class="preco-contexto">Menos que um rodízio. Menos que aquela compra por impulso de quinta passada.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final section">
+  <div class="container">
+    <h2>🧠 QUERO ENTENDER MEU CÉREBRO</h2>
+    <p><strong>Acesso imediato.</strong> Você recebe o PDF no seu e-mail em menos de 2 minutos. Sem mensalidade, sem pegadinha, seu pra sempre.</p>
+    <a href="https://pay.kiwify.com.br/Sljv34Z" class="cta-btn">COMPRAR AGORA — R$47</a><br>
+    <p class="cta-urgencia">
+      A gente sabe que você tem TDAH: se fechar esta página pra "comprar depois",<br>
+      <strong>o depois não existe. Você sabe disso melhor que ninguém.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- GARANTIA -->
+<section class="garantia section">
+  <div class="garantia-badge">
+    <div class="garantia-icon">🔒</div>
+    <h3>Garantia incondicional de 7 dias</h3>
+    <p>Leia o ebook inteiro. Se vocç não terminar a leitura pensando <em>"ah… então era ISSO"</em>, devolvemos 100% do seu dinheiro. Sem perguntas, sem formulário constrangedor, sem ressentimento. O risco é todo nosso — como tem que ser.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Este ebook tem caráter informativo e educacional e não substitui avaliação, diagnóstico ou tratamento por profissionais de saúde.</p>
+  <p style="margin-top:8px;">© 2026 Seu Cérebro Não Tá Quebrado. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
